@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+    <item
+        android:id="@+id/action_meal"
+        android:enabled="true"
+        android:icon="@drawable/ic_child_care_black_24dp"
+        android:title="Meal"
+        />
+
+    <item
+        android:id="@+id/action_sleep"
+        android:enabled="true"
+        android:icon="@drawable/ic_child_care_black_24dp"
+        android:title="Sleep"
+        />
+
+    <item
+        android:id="@+id/action_diaper"
+        android:enabled="true"
+        android:icon="@drawable/ic_child_care_black_24dp"
+        android:title="Diaper"/>
+
+    <item
+        android:id="@+id/action_growth"
+        android:enabled="true"
+        android:icon="@drawable/ic_child_care_black_24dp"
+        android:title="Growth"/>
+
+
+</menu>
