@@ -4,14 +4,12 @@ import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.fragment.app.FragmentManager;
 import androidx.fragment.app.FragmentTransaction;
-
 import android.app.AlertDialog;
 import android.content.DialogInterface;
 import android.os.Bundle;
 import android.view.MenuItem;
 import android.view.View;
 
-import com.etebarian.meowbottomnavigation.MeowBottomNavigation;
 import com.google.android.material.bottomnavigation.BottomNavigationView;
 
 public class MainActivity extends AppCompatActivity {
@@ -19,10 +17,14 @@ public class MainActivity extends AppCompatActivity {
     private BottomNavigationView bottomNavigationView; //하단 네비 바
     private FragmentManager fragmentManager;
     private FragmentTransaction fragmentTransaction;
-    private MealFragment mealFragment;
+
+    /*private MealFragment mealFragment;
     private GrowthFragment growthFragment;
     private DiaperFragment diaperFragment;
-    private SleepFragment sleepFragment;
+    private SleepFragment sleepFragment;*/
+
+    private ParentingRecordsFragment recordsFragment;
+    private ParentingStatisticsFragment statisticsFragment;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -39,10 +41,13 @@ public class MainActivity extends AppCompatActivity {
             }
         });
 
-        mealFragment = new MealFragment();
+       /* mealFragment = new MealFragment();
         growthFragment = new GrowthFragment();
         diaperFragment = new DiaperFragment();
-        sleepFragment = new SleepFragment();
+        sleepFragment = new SleepFragment();*/
+
+       recordsFragment = new ParentingRecordsFragment();
+       statisticsFragment = new ParentingStatisticsFragment();
 
         setFragment(0); //홈화면으로 지정
     }
@@ -50,18 +55,13 @@ public class MainActivity extends AppCompatActivity {
 
     public void changeFragment(int menu){
         switch (menu){
-            case R.id.action_meal:
+            case R.id.action_records:
                 setFragment(0);
                 break;
-            case R.id.action_sleep:
+            case R.id.action_statistics:
                 setFragment(1);
                 break;
-            case R.id.action_diaper:
-                    setFragment(2);
-                break;
-            case R.id.action_growth:
-                    setFragment(3);
-                break;
+
         }
     }
 
@@ -73,21 +73,14 @@ public class MainActivity extends AppCompatActivity {
 
         switch (menu){
             case 0:
-                fragmentTransaction.replace(R.id.main_frame, mealFragment);
+                fragmentTransaction.replace(R.id.main_frame, recordsFragment);
                 fragmentTransaction.commit();
                 break;
             case 1:
-                fragmentTransaction.replace(R.id.main_frame, mealFragment);
+                fragmentTransaction.replace(R.id.main_frame, statisticsFragment);
                 fragmentTransaction.commit();
                 break;
-            case 2:
-                fragmentTransaction.replace(R.id.main_frame, mealFragment);
-                fragmentTransaction.commit();
-                break;
-            case 3:
-                fragmentTransaction.replace(R.id.main_frame, mealFragment);
-                fragmentTransaction.commit();
-                break;
+
         }
 
     }
@@ -116,10 +109,9 @@ public class MainActivity extends AppCompatActivity {
             }
         });
 
-        alBuilder.setTitle("MyBaby");
+        alBuilder.setTitle("ImagineBaby");
         alBuilder.setIcon(R.mipmap.ic_launcher); //아이콘 설정
         alBuilder.show(); // AlertDialog.Bulider로 만든 AlertDialog를 보여준다.
-
 
     }
 
