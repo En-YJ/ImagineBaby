@@ -17,6 +17,7 @@ public class TabPagerAdapter extends FragmentStatePagerAdapter {
     }
 
 
+    // 통계 상위 탭바를 바꿔주는 곳
     @Override
     public Fragment getItem(int position) {
         switch (position)

@@ -12,6 +12,7 @@ import androidx.viewpager.widget.ViewPager;
 
 import com.google.android.material.tabs.TabLayout;
 
+// 육아 통계
 public class ParentingStatisticsFragment extends Fragment {
 
     private View view;

@@ -9,6 +9,7 @@ import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
 
+// 아기 식사 통계
 public class MealFragment extends Fragment {
 
     private View view;

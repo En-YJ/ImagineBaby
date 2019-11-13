@@ -9,6 +9,7 @@ import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
 
+// 아기 기저귀 통계
 public class DiaperFragment extends Fragment {
 
     private View view;

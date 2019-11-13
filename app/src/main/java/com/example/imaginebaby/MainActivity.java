@@ -61,7 +61,6 @@ public class MainActivity extends AppCompatActivity {
             case R.id.action_statistics:
                 setFragment(1);
                 break;
-
         }
     }
 
