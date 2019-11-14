@@ -2,57 +2,95 @@
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
     android:layout_margin="10dp"
     android:background="#FFFFFF"
-    android:orientation="vertical"
-    android:padding="10dp">
+    android:orientation="vertical">
 
-    <LinearLayout
+    <com.chauthai.swipereveallayout.SwipeRevealLayout
+        android:id="@+id/swipe_layout_1"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:orientation="horizontal">
+        android:layout_height="match_parent"
+        app:mode="normal"
+        app:dragEdge="right">
 
-        <!-- 기록 이미지 -->
-        <de.hdodenhof.circleimageview.CircleImageView
-            android:id="@+id/records_list_image"
-            android:layout_width="50dp"
-            android:layout_height="50dp"
-            android:layout_marginRight="15dp"
-            android:src="@drawable/ic_child_care_black_24dp"/>
-
+        <!-- 수정 , 삭제 -->
         <LinearLayout
             android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:orientation="vertical">
+            android:layout_height="match_parent"
+            android:orientation="horizontal">
 
-            <!-- 기록 제목 -->
             <TextView
-                android:id="@+id/records_list_title"
-                android:layout_width="wrap_content"
-                android:layout_height="25dp"
-                android:paddingTop="5dp"
-                android:textColor="#4C4C4C"
-                android:text="유저이름"/>
+                android:layout_width="70dp"
+                android:layout_height="match_parent"
+                android:gravity="center"
+                android:background="@android:color/darker_gray"
+                android:textColor="@android:color/white"
+                android:text="Edit"/>
 
-            <!-- 기록 내용 -->
             <TextView
-                android:id="@+id/records_list_desc"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:textColor="#8C8C8C"
-                android:textSize="13dp"
-                android:text="기록 내용"/>
+                android:layout_width="70dp"
+                android:layout_height="match_parent"
+                android:gravity="center"
+                android:background="@android:color/holo_red_light"
+                android:textColor="@android:color/white"
+                android:text="Delete"/>
         </LinearLayout>
 
-        <!-- 기록 시간 -->
-        <TextView
-            android:id="@+id/records_list_time"
+        <!-- 기록 전체 -->
+        <LinearLayout
             android:layout_width="match_parent"
-            android:layout_height="25dp"
-            android:gravity="right"
-            android:text="07:00"
-            android:textColor="#4C4C4C" />
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:background="@color/white">
 
-    </LinearLayout>
+            <!-- 기록 이미지 -->
+            <de.hdodenhof.circleimageview.CircleImageView
+                android:id="@+id/records_list_image"
+                android:layout_width="50dp"
+                android:layout_height="match_parent"
+                android:layout_marginRight="15dp"
+                android:src="@drawable/ic_child_care_black_24dp"/>
+
+            <LinearLayout
+
+                android:padding="10dp"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:orientation="vertical">
+
+                <!-- 기록 제목 -->
+                <TextView
+                    android:id="@+id/records_list_title"
+                    android:layout_width="wrap_content"
+                    android:layout_height="25dp"
+                    android:textSize="17dp"
+                    android:textColor="#4C4C4C"
+                    android:text="유저이름"/>
+
+                <!-- 기록 내용 -->
+                <TextView
+                    android:id="@+id/records_list_desc"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:textColor="#8C8C8C"
+                    android:textSize="13dp"
+                    android:text="기록 내용"/>
+            </LinearLayout>
+
+            <!-- 기록 시간 -->
+            <TextView
+                android:id="@+id/records_list_time"
+                android:layout_width="match_parent"
+                android:layout_height="25dp"
+                android:gravity="right"
+                android:text="am 07:00"
+                android:textColor="#4C4C4C"
+                android:layout_margin="10dp"/>
+        </LinearLayout>
+    </com.chauthai.swipereveallayout.SwipeRevealLayout>
+
+
 
 </LinearLayout>
