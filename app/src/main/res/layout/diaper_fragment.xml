@@ -7,4 +7,14 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:text="기저귀 교체 횟수, 대소변 평균 ?"/>
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+        <com.github.mikephil.charting.charts.LineChart
+            android:id="@+id/chart"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent" />
+    </RelativeLayout>
+
 </LinearLayout>

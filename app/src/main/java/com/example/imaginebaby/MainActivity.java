@@ -108,7 +108,7 @@ public class MainActivity extends AppCompatActivity {
             }
         });
 
-        alBuilder.setTitle("ImagineBaby");
+        alBuilder.setTitle(getString(R.string.app_name));
         alBuilder.setIcon(R.mipmap.ic_launcher); //아이콘 설정
         alBuilder.show(); // AlertDialog.Bulider로 만든 AlertDialog를 보여준다.
 

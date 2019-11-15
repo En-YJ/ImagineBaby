@@ -3,22 +3,21 @@ package com.example.imaginebaby;
 
 public class RecordsListItem {
 
-    private byte[] records_image; //기록 이미지
+    private int records_image; //기록 이미지
     private String records_title;  // 기록 상위
     private String records_desc;  // 기록 하위
     private String records_time;   // 기록 시간
 
 
     // 생성자
-    public RecordsListItem(byte[] records_image, String records_title, String records_desc, String records_time) {
-
+    public RecordsListItem(int records_image, String records_title, String records_desc, String records_time) {
         this.records_image = records_image;
         this.records_title = records_title;
         this.records_desc = records_desc;
         this.records_time = records_time;
     }
 
-    public byte[] getRecords_image() { return records_image;}
+    public int getRecords_image() { return records_image;}
 
     public String getRecords_title() {
         return records_title;

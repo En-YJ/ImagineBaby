@@ -5,6 +5,7 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ListView;
+import android.widget.TextView;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
@@ -20,6 +21,8 @@ public class ParentingRecordsFragment extends Fragment {
     private ArrayList<RecordsListItem> recordsData;   // 기록 데이터
     private View view;
 
+    private RecordsListItem[] items = new RecordsListItem[10];
+
     @Nullable
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
@@ -29,8 +32,25 @@ public class ParentingRecordsFragment extends Fragment {
 
         setRecordsPage();
 
+        //TextView delete = view.findViewById(R.id.item_delete);
+        //delete.setOnClickListener(listener);
         return view;
     }
+
+    private View.OnClickListener listener = new View.OnClickListener() {
+        @Override
+        public void onClick(View view) {
+            int position;
+            position = recordsList.getCheckedItemPosition();
+            if(position != ListView.INVALID_POSITION)
+            {
+                recordsData.remove(position);
+                recordsList.clearChoices();
+                recordsListViewAdapter.notifyDataSetChanged();
+            }
+
+        }
+    };
 
     // 기록 페이지 설정하는 메소드
     public void setRecordsPage() {
@@ -41,27 +61,28 @@ public class ParentingRecordsFragment extends Fragment {
         recordsData = new ArrayList<>();
 
         //테스팅
-        RecordsListItem[] item = new RecordsListItem[10];
-        item[0] = new RecordsListItem(null,"엽","헤헹","13:22");
-        item[1] = new RecordsListItem(null,"뭐","므ㅏ","07:00");
-        item[2] = new RecordsListItem(null,"엽","헤헹","13:22");
-        item[3] = new RecordsListItem(null,"뭐","므ㅏ","07:00");
-        item[4] = new RecordsListItem(null,"엽","헤헹","13:22");
-        item[5] = new RecordsListItem(null,"뭐","므ㅏ","07:00");
-        item[6] = new RecordsListItem(null,"엽","헤헹","13:22");
-        item[7] = new RecordsListItem(null,"뭐","므ㅏ","07:00");
-        item[8] = new RecordsListItem(null,"엽","헤헹","13:22");
-        item[9] = new RecordsListItem(null,"뭐","므ㅏ","07:00");
-        recordsData.add(item[0]);
-        recordsData.add(item[1]);
-        recordsData.add(item[2]);
-        recordsData.add(item[3]);
-        recordsData.add(item[4]);
-        recordsData.add(item[5]);
-        recordsData.add(item[6]);
-        recordsData.add(item[7]);
-        recordsData.add(item[8]);
-        recordsData.add(item[9]);
+        //RecordsListItem[] items = new RecordsListItem[10];
+        items[0] = new RecordsListItem(1,"식사","분유 1회 100ml","am 13:22");
+        items[1] = new RecordsListItem(2,"기저귀","소변","am 07:00");
+        items[2] = new RecordsListItem(3,"성장","머리둘레 5cm","pm 13:22");
+        items[3] = new RecordsListItem(4,"수면","수면 01:00","pm 07:00");
+        items[4] = new RecordsListItem(1,"식사","모유 10분","pm 13:22");
+        items[5] = new RecordsListItem(2,"기저귀","소변 + 대변","pm 07:00");
+        items[6] = new RecordsListItem(3,"성장","몸무게 5kg","am 13:22");
+        items[7] = new RecordsListItem(4,"수면","수면 02:00","am 07:00");
+        items[8] = new RecordsListItem(1,"식사","이유식 1회","am 13:22");
+        items[9] = new RecordsListItem(2,"기저귀","그냥 교체","am 07:00");
+        recordsData.add(items[0]);
+        recordsData.add(items[1]);
+        recordsData.add(items[2]);
+        recordsData.add(items[3]);
+        recordsData.add(items[4]);
+        recordsData.add(items[5]);
+        recordsData.add(items[6]);
+        recordsData.add(items[7]);
+        recordsData.add(items[8]);
+        recordsData.add(items[9]);
+
 
         // 어댑터로 리스트에 아이템 뿌려주기
         recordsListViewAdapter = new RecordsListViewAdapter(getLayoutInflater(), R.layout.records_listview_item, recordsData);

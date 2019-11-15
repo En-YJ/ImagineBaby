@@ -11,7 +11,7 @@
     <item
         android:id="@+id/action_statistics"
         android:enabled="true"
-        android:icon="@drawable/ic_child_care_black_24dp"
+        android:icon="@drawable/ic_chart"
         android:title="Statistics"
         />
 
