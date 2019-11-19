@@ -1,5 +1,6 @@
 package com.example.imaginebaby;
 
+import android.app.Activity;
 import android.content.Context;
 import android.graphics.Bitmap;
 import android.graphics.drawable.BitmapDrawable;
@@ -16,16 +17,19 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import com.bumptech.glide.Glide;
+import com.chauthai.swipereveallayout.ViewBinderHelper;
+import com.chauthai.swipereveallayout.SwipeRevealLayout;
 
 import java.util.ArrayList;
 
 import de.hdodenhof.circleimageview.CircleImageView;
 
 /**
- * 기록 리스트뷰 어댑터 클래스
+ * 기록 리스트뷰 어댑터 클래스 근데 안쓸거같아 일단 까먹을까봐 납둘게
  */
 public class RecordsListViewAdapter extends BaseAdapter {
 
+    private ViewBinderHelper binderHelper;
     private LayoutInflater inflater;
     private ArrayList<RecordsListItem> recordsData;
     private int layout;
@@ -42,6 +46,8 @@ public class RecordsListViewAdapter extends BaseAdapter {
         this.inflater = inflater;
         this.recordsData = recordsData;
         this.layout=layout;
+
+        binderHelper = new ViewBinderHelper();
     }
 
     public ArrayList<RecordsListItem> getRecordsList(){
@@ -60,6 +66,8 @@ public class RecordsListViewAdapter extends BaseAdapter {
     public long getItemId(int position){return position;}
     @Override
     public View getView(final int position, View convertView, ViewGroup parent){
+        ViewHolder holder;
+
         if(convertView==null){
             convertView=inflater.inflate(layout,parent,false);
         }
@@ -117,5 +125,12 @@ public class RecordsListViewAdapter extends BaseAdapter {
 
 
         return convertView;
+    }
+
+    private class ViewHolder {
+        SwipeRevealLayout swipeLayout;
+        View frontView;
+        View deleteView;
+        TextView textView;
     }
 }

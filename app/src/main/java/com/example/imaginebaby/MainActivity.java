@@ -4,19 +4,29 @@ import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.fragment.app.FragmentManager;
 import androidx.fragment.app.FragmentTransaction;
+
+import android.annotation.SuppressLint;
 import android.app.AlertDialog;
 import android.content.DialogInterface;
+import android.database.Cursor;
 import android.os.Bundle;
+import android.os.StrictMode;
 import android.view.MenuItem;
 import android.view.View;
 
 import com.google.android.material.bottomnavigation.BottomNavigationView;
+
+import java.sql.Connection;
+import java.sql.DriverManager;
+import java.sql.SQLException;
 
 public class MainActivity extends AppCompatActivity {
 
     private BottomNavigationView bottomNavigationView; //하단 네비 바
     private FragmentManager fragmentManager;
     private FragmentTransaction fragmentTransaction;
+
+    private Cursor cursor;
 
     /*private MealFragment mealFragment;
     private GrowthFragment growthFragment;
@@ -112,6 +122,27 @@ public class MainActivity extends AppCompatActivity {
         alBuilder.setIcon(R.mipmap.ic_launcher); //아이콘 설정
         alBuilder.show(); // AlertDialog.Bulider로 만든 AlertDialog를 보여준다.
 
+    }
+
+
+    @SuppressLint("NewApi")
+    public Connection connectionClass()
+    {
+        StrictMode.ThreadPolicy policy = new StrictMode.ThreadPolicy.Builder().permitAll().build();
+        StrictMode.setThreadPolicy(policy);
+        Connection connection = null;
+        String ConnetionURL = null;
+
+        try {
+            Class.forName("net.sourceforge.jtds.jdbc.Driver");
+            ConnetionURL = "jdbc:jtds:sqlserver://yeopdbcore.database.windows.net:1433;DatabaseName=YeopDBCore;user=yeop@yeopdbcore;password=ekdh6@naver.com;encrypt=true;trustServerCertificate=false;hostNameInCertificate=*.database.windows.net;loginTimeout=30;";
+            connection = DriverManager.getConnection(ConnetionURL);
+        } catch (ClassNotFoundException e) {
+            e.printStackTrace();
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+        return connection;
     }
 
 

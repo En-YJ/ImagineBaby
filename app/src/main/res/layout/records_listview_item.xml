@@ -43,6 +43,7 @@
 
         <!-- 기록 전체 -->
         <LinearLayout
+            android:id="@+id/front_layout"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:orientation="horizontal"

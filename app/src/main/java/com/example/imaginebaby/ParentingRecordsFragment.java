@@ -12,16 +12,20 @@ import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
 
 import java.util.ArrayList;
+import java.util.List;
 
 // 육아 기록
 public class ParentingRecordsFragment extends Fragment {
 
-    private RecordsListViewAdapter recordsListViewAdapter;  //기록 리스트뷰 어댑터
+    //private RecordsListViewAdapter recordsListViewAdapter;  //기록 리스트뷰 어댑터
     private ListView recordsList;         // 기록 리스트
     private ArrayList<RecordsListItem> recordsData;   // 기록 데이터
     private View view;
 
     private RecordsListItem[] items = new RecordsListItem[10];
+
+
+    private ListAdapter adapter; //기록 리스트뷰 어댑터
 
     @Nullable
     @Override
@@ -32,25 +36,10 @@ public class ParentingRecordsFragment extends Fragment {
 
         setRecordsPage();
 
-        //TextView delete = view.findViewById(R.id.item_delete);
-        //delete.setOnClickListener(listener);
         return view;
     }
 
-    private View.OnClickListener listener = new View.OnClickListener() {
-        @Override
-        public void onClick(View view) {
-            int position;
-            position = recordsList.getCheckedItemPosition();
-            if(position != ListView.INVALID_POSITION)
-            {
-                recordsData.remove(position);
-                recordsList.clearChoices();
-                recordsListViewAdapter.notifyDataSetChanged();
-            }
 
-        }
-    };
 
     // 기록 페이지 설정하는 메소드
     public void setRecordsPage() {
@@ -83,12 +72,37 @@ public class ParentingRecordsFragment extends Fragment {
         recordsData.add(items[8]);
         recordsData.add(items[9]);
 
-
         // 어댑터로 리스트에 아이템 뿌려주기
-        recordsListViewAdapter = new RecordsListViewAdapter(getLayoutInflater(), R.layout.records_listview_item, recordsData);
-        recordsList.setAdapter(recordsListViewAdapter);
+        adapter = new ListAdapter(getContext(), recordsData);
+        recordsList.setAdapter(adapter);
+
 
     }
+
+    @Override
+    public void onSaveInstanceState(Bundle outState) {
+        super.onSaveInstanceState(outState);
+
+        // Only if you need to restore open/close state when
+        // the orientation is changed
+        if (adapter != null) {
+            adapter.saveStates(outState);
+        }
+    }
+
+    @Override
+    public void onViewStateRestored(@Nullable Bundle savedInstanceState) {
+        // Only if you need to restore open/close state when
+        // the orientation is changed
+        super.onViewStateRestored(savedInstanceState);
+        if (adapter != null) {
+            adapter.restoreStates(savedInstanceState);
+        }
+    }
+
+
+
+
 
 
 
