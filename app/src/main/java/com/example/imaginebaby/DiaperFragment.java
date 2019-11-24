@@ -12,7 +12,6 @@ import androidx.fragment.app.Fragment;
 
 import com.github.mikephil.charting.animation.Easing;
 import com.github.mikephil.charting.charts.LineChart;
-import com.github.mikephil.charting.components.Description;
 import com.github.mikephil.charting.components.XAxis;
 import com.github.mikephil.charting.components.YAxis;
 import com.github.mikephil.charting.data.Entry;
@@ -51,8 +50,8 @@ public class DiaperFragment extends Fragment {
         lineDataSet.setDrawHorizontalHighlightIndicator(false);
         lineDataSet.setDrawHighlightIndicators(false);
         lineDataSet.setDrawValues(false);
-        LineData lineData = new LineData(lineDataSet);
-        lineChart.setData(lineData);
+        //LineData lineData = new LineData(lineDataSet);
+        //lineChart.setData(lineData);
         XAxis xAxis = lineChart.getXAxis();
         xAxis.setPosition(XAxis.XAxisPosition.BOTTOM);
         xAxis.setTextColor(Color.BLACK);
@@ -63,11 +62,11 @@ public class DiaperFragment extends Fragment {
         yRAxis.setDrawLabels(false);
         yRAxis.setDrawAxisLine(false);
         yRAxis.setDrawGridLines(false);
-        Description description = new Description();
-        description.setText("");
+        //Description description = new Description();
+        //description.setText("");
         lineChart.setDoubleTapToZoomEnabled(false);
         lineChart.setDrawGridBackground(false);
-        lineChart.setDescription(description);
+        //lineChart.setDescription(description);
         //lineChart.animateY(2000, Easing.EasingOption.EaseInCubic);
         lineChart.invalidate();
 

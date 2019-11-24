@@ -13,12 +13,13 @@ import android.os.Bundle;
 import android.os.StrictMode;
 import android.view.MenuItem;
 import android.view.View;
+import android.widget.Button;
+import android.widget.ListView;
+import android.widget.TextView;
 
 import com.google.android.material.bottomnavigation.BottomNavigationView;
+import com.google.android.material.floatingactionbutton.FloatingActionButton;
 
-import java.sql.Connection;
-import java.sql.DriverManager;
-import java.sql.SQLException;
 
 public class MainActivity extends AppCompatActivity {
 
@@ -26,12 +27,6 @@ public class MainActivity extends AppCompatActivity {
     private FragmentManager fragmentManager;
     private FragmentTransaction fragmentTransaction;
 
-    private Cursor cursor;
-
-    /*private MealFragment mealFragment;
-    private GrowthFragment growthFragment;
-    private DiaperFragment diaperFragment;
-    private SleepFragment sleepFragment;*/
 
     private ParentingRecordsFragment recordsFragment;
     private ParentingStatisticsFragment statisticsFragment;
@@ -51,13 +46,25 @@ public class MainActivity extends AppCompatActivity {
             }
         });
 
-       /* mealFragment = new MealFragment();
-        growthFragment = new GrowthFragment();
-        diaperFragment = new DiaperFragment();
-        sleepFragment = new SleepFragment();*/
+
 
        recordsFragment = new ParentingRecordsFragment();
        statisticsFragment = new ParentingStatisticsFragment();
+
+       //azure sql 테스트용
+        FloatingActionButton testButton = findViewById(R.id.testButton);
+        testButton.setOnClickListener(new Button.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+
+                //서버 연결
+                NetworkTask networkTask = new NetworkTask(MainActivity.this, 2);
+                networkTask.execute();
+
+                return;
+            }
+        });
+
 
         setFragment(0); //홈화면으로 지정
     }
@@ -101,7 +108,7 @@ public class MainActivity extends AppCompatActivity {
 
         // AlertDialog 빌더를 이용해 종료시 발생시킬 창을 띄운다
         AlertDialog.Builder alBuilder = new AlertDialog.Builder(this);
-        alBuilder.setMessage("Do you wanna quit, bro?");
+        alBuilder.setMessage("Do you wanna quit-?");
 
         // "예" 버튼을 누르면 실행되는 리스너
         alBuilder.setPositiveButton("Yeah", new DialogInterface.OnClickListener() {
@@ -124,26 +131,6 @@ public class MainActivity extends AppCompatActivity {
 
     }
 
-
-    @SuppressLint("NewApi")
-    public Connection connectionClass()
-    {
-        StrictMode.ThreadPolicy policy = new StrictMode.ThreadPolicy.Builder().permitAll().build();
-        StrictMode.setThreadPolicy(policy);
-        Connection connection = null;
-        String ConnetionURL = null;
-
-        try {
-            Class.forName("net.sourceforge.jtds.jdbc.Driver");
-            ConnetionURL = "jdbc:jtds:sqlserver://yeopdbcore.database.windows.net:1433;DatabaseName=YeopDBCore;user=yeop@yeopdbcore;password=ekdh6@naver.com;encrypt=true;trustServerCertificate=false;hostNameInCertificate=*.database.windows.net;loginTimeout=30;";
-            connection = DriverManager.getConnection(ConnetionURL);
-        } catch (ClassNotFoundException e) {
-            e.printStackTrace();
-        } catch (SQLException e) {
-            e.printStackTrace();
-        }
-        return connection;
-    }
 
 
 }

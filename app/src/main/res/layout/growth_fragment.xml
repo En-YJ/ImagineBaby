@@ -10,17 +10,9 @@
         android:layout_height="wrap_content"
         android:text="성장 몸무게,키, 머리둘레 또래아이들과 평균인지도?"/>
 
-    <ir.farshid_roohi.linegraph.LineChart
-        android:id="@+id/lineChart"
+    <com.github.mikephil.charting.charts.LineChart
+        android:id="@+id/chart_height"
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:orientation="vertical"
-        app:chart_padding_bottom="35dp"
-        app:chart_padding_left="20dp"
-        app:chart_padding_right="20dp"
-        app:chart_padding_top="20dp"
-        app:chart_line_color="#32FFFFFF"
-        app:chart_bg_color="@color/cardview_dark_background"
-        />
+        android:layout_height="match_parent"/>
 
 </LinearLayout>

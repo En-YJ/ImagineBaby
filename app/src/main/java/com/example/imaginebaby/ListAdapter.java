@@ -1,6 +1,8 @@
 package com.example.imaginebaby;
 
+import android.app.Activity;
 import android.content.Context;
+import android.content.Intent;
 import android.graphics.drawable.Drawable;
 import android.os.Bundle;
 import android.util.Log;
@@ -29,6 +31,7 @@ public class ListAdapter extends ArrayAdapter<RecordsListItem> {
         super(context, R.layout.records_listview_item, recordsListItems);
         mInflater = LayoutInflater.from(context);
         binderHelper = new ViewBinderHelper();
+        binderHelper.setOpenOnlyOne(true);
     }
 
     @Override
@@ -96,7 +99,8 @@ public class ListAdapter extends ArrayAdapter<RecordsListItem> {
             holder.editView.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View v) {
-                    Toast.makeText(getContext(), "수정할 기회를 줘야지", Toast.LENGTH_SHORT).show();
+                    Intent intent = new Intent(getContext(), RecordsEditActivity.class);
+                    getContext().startActivity(intent);
                 }
             });
 

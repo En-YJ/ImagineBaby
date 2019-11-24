@@ -31,7 +31,7 @@ public class SleepFragment extends Fragment {
 
         BarChart chart = view.findViewById(R.id.barChart);
 
-        List<BarEntry> entries = new ArrayList<>();
+       /* List<BarEntry> entries = new ArrayList<>();
         entries.add(new BarEntry(0f, 30f));
         entries.add(new BarEntry(1f, 80f));
         entries.add(new BarEntry(2f, 60f));
@@ -45,7 +45,7 @@ public class SleepFragment extends Fragment {
         data.setBarWidth(0.9f); // set custom bar width
         chart.setData(data);
         chart.setFitBars(true); // make the x-axis fit exactly all bars
-        chart.invalidate(); // refresh
+        chart.invalidate(); // refresh*/
 
         return view;
     }

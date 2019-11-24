@@ -81,6 +81,9 @@
                     android:layout_height="wrap_content"
                     android:textColor="#8C8C8C"
                     android:textSize="13dp"
+                    android:maxLines="1"
+                    android:ellipsize="end"
+                    android:singleLine="true"
                     android:text="기록 내용"/>
             </LinearLayout>
 
@@ -88,7 +91,8 @@
             <TextView
                 android:id="@+id/records_list_time"
                 android:layout_width="match_parent"
-                android:layout_height="25dp"
+                android:layout_height="wrap_content"
+                android:layout_alignParentRight="true"
                 android:gravity="right"
                 android:text="am 07:00"
                 android:textColor="#4C4C4C"
