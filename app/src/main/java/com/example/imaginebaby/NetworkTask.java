@@ -18,6 +18,7 @@ import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.ResultSet;
 import java.sql.Statement;
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -114,7 +115,7 @@ public class NetworkTask extends AsyncTask<Void, Void, String> {
                         {
                             if ( isCancelled() ) break;
                             //rs.get원하는형식("데이터이름")
-                            RecordsListItem item = new RecordsListItem(rs.getInt("baby_image"),rs.getString("baby_title"),rs.getString("baby_desc"),rs.getString("baby_time"));
+                            RecordsListItem item = new RecordsListItem(rs.getInt("baby_image"),rs.getString("baby_title"),rs.getString("baby_desc"),rs.getString("real_time"));
                             items.add(item);
                         }
                         conn.close();

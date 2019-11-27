@@ -10,6 +10,8 @@ import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
 
 import com.github.mikephil.charting.charts.BarChart;
+import com.github.mikephil.charting.components.XAxis;
+import com.github.mikephil.charting.components.YAxis;
 import com.github.mikephil.charting.data.BarData;
 import com.github.mikephil.charting.data.BarDataSet;
 import com.github.mikephil.charting.data.BarEntry;
@@ -31,21 +33,38 @@ public class SleepFragment extends Fragment {
 
         BarChart chart = view.findViewById(R.id.barChart);
 
-       /* List<BarEntry> entries = new ArrayList<>();
-        entries.add(new BarEntry(0f, 30f));
-        entries.add(new BarEntry(1f, 80f));
-        entries.add(new BarEntry(2f, 60f));
-        entries.add(new BarEntry(3f, 50f));
-        // gap of 2f
-        entries.add(new BarEntry(5f, 70f));
-        entries.add(new BarEntry(6f, 60f));
+        List<BarEntry> entries = new ArrayList<>();
+        entries.add(new BarEntry(0, 3));
+        entries.add(new BarEntry(1, 3));
+        entries.add(new BarEntry(2, 5));
+        entries.add(new BarEntry(3, 6));
+        entries.add(new BarEntry(4, 5));
+        entries.add(new BarEntry(5, 7));
+        entries.add(new BarEntry(6, 5));
 
-        BarDataSet set = new BarDataSet(entries, "BarDataSet");
+        XAxis xAxis = chart.getXAxis();
+
+
+        xAxis.setValueFormatter(new GraphAxisValueFormatter()); //요일 설정
+
+
+        YAxis yAxisRight = chart.getAxisRight(); //Y축의 오른쪽면 설정
+        yAxisRight.setDrawLabels(false);
+        yAxisRight.setDrawAxisLine(false);
+        yAxisRight.setDrawGridLines(false);
+
+        YAxis leftAxis = chart.getAxisLeft();
+        leftAxis.setAxisMinimum(0f); // this replaces setStartAtZero(true)
+
+
+        chart.setDescription(null); //디스크립션
+
+        BarDataSet set = new BarDataSet(entries, "일일 수면 횟수");
         BarData data = new BarData(set);
         data.setBarWidth(0.9f); // set custom bar width
         chart.setData(data);
         chart.setFitBars(true); // make the x-axis fit exactly all bars
-        chart.invalidate(); // refresh*/
+        chart.invalidate(); // refresh
 
         return view;
     }

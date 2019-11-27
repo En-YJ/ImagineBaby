@@ -49,7 +49,7 @@ public class GrowthFragment extends Fragment {
         heights.add(new Entry(144, 3));
 
         // Dataset 설정
-        LineChart chart_height = (LineChart)view.findViewById(R.id.chart_height);
+        LineChart chart_height = (LineChart)view.findViewById(R.id.chart_mainchart);
 
         LineDataSet lineDataSet_h = new LineDataSet(heights, "");
         lineDataSet_h.setColors(ColorTemplate.VORDIPLOM_COLORS);
@@ -77,10 +77,10 @@ public class GrowthFragment extends Fragment {
 
         chart_height.getAxisLeft().setStartAtZero(false);
 
-        //LineData lineData_h = new LineData(lineDataSet_h, lineDataSet_h);
-        //chart_height.setData(lineData_h);
+        LineData lineData_h = new LineData(lineDataSet_h, lineDataSet_h);
+        chart_height.setData(lineData_h);
 
-        //chart_height.animateY(2000, Easing.EaseInCubic);
+        chart_height.animateY(2000, Easing.EaseInCubic);
         chart_height.invalidate();
 
         //chart_weight

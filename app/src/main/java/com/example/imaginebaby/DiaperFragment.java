@@ -11,12 +11,17 @@ import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
 
 import com.github.mikephil.charting.animation.Easing;
+import com.github.mikephil.charting.charts.BarChart;
 import com.github.mikephil.charting.charts.LineChart;
 import com.github.mikephil.charting.components.XAxis;
 import com.github.mikephil.charting.components.YAxis;
+import com.github.mikephil.charting.data.BarData;
+import com.github.mikephil.charting.data.BarDataSet;
+import com.github.mikephil.charting.data.BarEntry;
 import com.github.mikephil.charting.data.Entry;
 import com.github.mikephil.charting.data.LineData;
 import com.github.mikephil.charting.data.LineDataSet;
+import com.github.mikephil.charting.formatter.ValueFormatter;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -25,51 +30,51 @@ import java.util.List;
 public class DiaperFragment extends Fragment {
 
     private View view;
-    private LineChart lineChart;
+    private BarChart barChart;
 
     @Nullable
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
         view = inflater.inflate(R.layout.diaper_fragment, container, false);
 
-        lineChart = (LineChart)view.findViewById(R.id.chart);
-        List<Entry> entries = new ArrayList<>();
-        entries.add(new Entry(1, 1));
-        entries.add(new Entry(2, 2));
-        entries.add(new Entry(3, 0));
-        entries.add(new Entry(4, 4));
-        entries.add(new Entry(5, 3));
-        LineDataSet lineDataSet = new LineDataSet(entries, "속성명1");
-        lineDataSet.setLineWidth(2);
-        lineDataSet.setCircleRadius(6);
-        lineDataSet.setCircleColor(Color.parseColor("#FFA1B4DC"));
-        //lineDataSet.setCircleColorHole(Color.BLUE);
-        lineDataSet.setColor(Color.parseColor("#FFA1B4DC"));
-        lineDataSet.setDrawCircleHole(true);
-        lineDataSet.setDrawCircles(true);
-        lineDataSet.setDrawHorizontalHighlightIndicator(false);
-        lineDataSet.setDrawHighlightIndicators(false);
-        lineDataSet.setDrawValues(false);
-        //LineData lineData = new LineData(lineDataSet);
-        //lineChart.setData(lineData);
-        XAxis xAxis = lineChart.getXAxis();
-        xAxis.setPosition(XAxis.XAxisPosition.BOTTOM);
-        xAxis.setTextColor(Color.BLACK);
-        xAxis.enableGridDashedLine(8, 24, 0);
-        YAxis yLAxis = lineChart.getAxisLeft();
-        yLAxis.setTextColor(Color.BLACK);
-        YAxis yRAxis = lineChart.getAxisRight();
-        yRAxis.setDrawLabels(false);
-        yRAxis.setDrawAxisLine(false);
-        yRAxis.setDrawGridLines(false);
-        //Description description = new Description();
-        //description.setText("");
-        lineChart.setDoubleTapToZoomEnabled(false);
-        lineChart.setDrawGridBackground(false);
-        //lineChart.setDescription(description);
-        //lineChart.animateY(2000, Easing.EasingOption.EaseInCubic);
-        lineChart.invalidate();
+        barChart = (BarChart) view.findViewById(R.id.diaperBarChart);
+        List<BarEntry> entries = new ArrayList<>();
+        entries.add(new BarEntry(0, 1f));
+        entries.add(new BarEntry(1, 2f));
+        entries.add(new BarEntry(2, 3f));
+        entries.add(new BarEntry(3, 4f));
+        entries.add(new BarEntry(4, 5f));
+        entries.add(new BarEntry(5, 2f));
+        entries.add(new BarEntry(6, 5f));
+
+
+        XAxis xAxis = barChart.getXAxis();
+
+        xAxis.setValueFormatter(new GraphAxisValueFormatter()); //요일 설정
+
+
+        YAxis yAxisRight = barChart.getAxisRight(); //Y축의 오른쪽면 설정
+        yAxisRight.setDrawLabels(false);
+        yAxisRight.setDrawAxisLine(false);
+        yAxisRight.setDrawGridLines(false);
+
+        YAxis leftAxis = barChart.getAxisLeft();
+        leftAxis.setAxisMinimum(0f); // this replaces setStartAtZero(true)
+
+        barChart.setDescription(null); //디스크립션
+
+
+        BarDataSet set = new BarDataSet(entries, "일일 기저귀 교체 횟수");
+
+        BarData data = new BarData(set);
+        data.setBarWidth(0.9f); // set custom bar width
+        barChart.setData(data);
+        barChart.setFitBars(true); // make the x-axis fit exactly all bars
+        barChart.invalidate(); // refresh
+
 
         return view;
     }
+
+
 }
