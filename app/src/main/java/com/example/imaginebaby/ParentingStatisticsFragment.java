@@ -18,6 +18,14 @@ public class ParentingStatisticsFragment extends Fragment {
     private View view;
     private TabLayout tabLayout;
     private ViewPager viewPager;
+    private TabPagerAdapter tabPagerAdapter;
+
+    public static ParentingStatisticsFragment newInstance(){
+        ParentingStatisticsFragment fragment = new ParentingStatisticsFragment();
+        Bundle args = new Bundle();
+        fragment.setArguments(args);
+        return fragment;
+    }
 
     @Nullable
     @Override
@@ -28,10 +36,16 @@ public class ParentingStatisticsFragment extends Fragment {
         tabLayout = view.findViewById(R.id.parenting_tabs);
         viewPager = view.findViewById(R.id.container_statistics);
 
-        TabPagerAdapter tabPagerAdapter = new TabPagerAdapter(getFragmentManager(), tabLayout.getTabCount());
+        tabPagerAdapter = new TabPagerAdapter(getFragmentManager(), tabLayout.getTabCount());
         viewPager.setAdapter(tabPagerAdapter);
-
         viewPager.addOnPageChangeListener(new TabLayout.TabLayoutOnPageChangeListener(tabLayout));
+
+        /*tabLayout.post(new Runnable() {
+            @Override
+            public void run() {
+
+            }
+        });*/
 
         tabLayout.addOnTabSelectedListener(new TabLayout.OnTabSelectedListener() {
             @Override

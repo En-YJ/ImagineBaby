@@ -49,10 +49,18 @@ public class NetworkTask extends AsyncTask<Void, Void, String> {
             this.asyncDialog = new ProgressDialog(_context);
     }
 
+    public NetworkTask(Context _context, int action, String data){
+        this.context = _context;
+        this.selection = action;
+        this.data = data;
+        if(_context != null)
+            this.asyncDialog = new ProgressDialog(_context);
+    }
+
     @Override
     protected String doInBackground(Void... voids) {
         String result = null;
-        try
+       /* try
         {
             Connection conn = dbConnection.connectionClass();
             Log.e("너의이름은?",conn.getMetaData().getUserName());
@@ -78,7 +86,7 @@ public class NetworkTask extends AsyncTask<Void, Void, String> {
         catch (Exception ex)
         {
             Log.e("시발..?","ㅋㅋㅋㅋㅋㅋㅋㅋㅋㅋㅋㅋㅋㅋㅋㅋㅋㅋㅋㅋㅋㅋㅋㅋㅋㅋㅋㅋㅋ");
-        }
+        }*/
 
         return result;
     }
@@ -137,6 +145,18 @@ public class NetworkTask extends AsyncTask<Void, Void, String> {
                         String query = "INSERT INTO TestBaby(baby_image,baby_title,baby_desc) VALUES(3,'test','test')" ;
                         Statement stmt = con.createStatement();
                         stmt.executeUpdate(query);*/
+
+                    } catch (Exception e) {
+                        e.printStackTrace();
+                    }
+                    break;
+
+                case 3:
+                    try {
+                        Connection con = dbConnection.connectionClass();
+                        String query = "DELETE FROM TestBaby WHERE baby_desc ="+"'"+data+"'" ;
+                        Statement stmt = con.createStatement();
+                        stmt.executeUpdate(query);
 
                     } catch (Exception e) {
                         e.printStackTrace();

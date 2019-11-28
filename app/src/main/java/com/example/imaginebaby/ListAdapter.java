@@ -60,6 +60,7 @@ public class ListAdapter extends ArrayAdapter<RecordsListItem> {
         }
 
         final RecordsListItem item = getItem(position);
+
         if (item != null) {
             binderHelper.bind(holder.swipeLayout, String.valueOf(item));
 
@@ -91,7 +92,12 @@ public class ListAdapter extends ArrayAdapter<RecordsListItem> {
             holder.deleteView.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View v) {
+
                     remove(item);
+
+                    //서버 연결
+                    NetworkTask networkTask = new NetworkTask(getContext(), 3, item.getRecords_desc());
+                    networkTask.execute();
                 }
             });
 

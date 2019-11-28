@@ -6,9 +6,11 @@ import androidx.fragment.app.FragmentStatePagerAdapter;
 
 public class TabPagerAdapter extends FragmentStatePagerAdapter {
 
-
     private int tabCount;
-
+    MealFragment mealFragment = MealFragment.newInstance();
+    SleepFragment sleepFragment = SleepFragment.newInstance();
+    DiaperFragment diaperFragment = DiaperFragment.newInstance();
+    GrowthFragment growthFragment = GrowthFragment.newInstance();
 
     public TabPagerAdapter(FragmentManager fragmentManager, int tabCount)
     {
@@ -23,16 +25,16 @@ public class TabPagerAdapter extends FragmentStatePagerAdapter {
         switch (position)
         {
             case 0:
-                MealFragment mealFragment = new MealFragment();
+
                 return mealFragment;
             case 1:
-                SleepFragment sleepFragment = new SleepFragment();
+
                 return sleepFragment;
             case 2:
-                DiaperFragment diaperFragment = new DiaperFragment();
+
                 return diaperFragment;
             case 3:
-                GrowthFragment growthFragment = new GrowthFragment();
+
                 return growthFragment;
 
                 default :

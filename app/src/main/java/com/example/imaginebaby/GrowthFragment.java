@@ -33,6 +33,13 @@ public class GrowthFragment extends Fragment {
 
     private View view;
 
+    public static GrowthFragment newInstance(){
+        GrowthFragment fragment = new GrowthFragment();
+        Bundle args = new Bundle();
+        fragment.setArguments(args);
+        return fragment;
+    }
+
     @Nullable
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {

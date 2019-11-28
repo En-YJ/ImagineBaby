@@ -50,14 +50,13 @@ public class MainActivity extends AppCompatActivity {
 
 
 
-       recordsFragment = new ParentingRecordsFragment();
-       statisticsFragment = new ParentingStatisticsFragment();
+       recordsFragment = ParentingRecordsFragment.newInstance();
+       statisticsFragment = ParentingStatisticsFragment.newInstance();
 
 
 
         setFragment(0); //홈화면으로 지정
     }
-
 
     public void changeFragment(int menu){
         switch (menu){
@@ -89,7 +88,6 @@ public class MainActivity extends AppCompatActivity {
         }
 
     }
-
 
     // 뒤로가기 버튼을 눌렀을 때의 오버라이드 메소드
     @Override
@@ -132,3 +130,5 @@ public class MainActivity extends AppCompatActivity {
     }
 
 }
+
+

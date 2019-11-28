@@ -31,6 +31,13 @@ public class ParentingRecordsFragment extends Fragment {
 
     private ListAdapter adapter; //기록 리스트뷰 어댑터
 
+    public static ParentingRecordsFragment newInstance(){
+        ParentingRecordsFragment fragment = new ParentingRecordsFragment();
+        Bundle args = new Bundle();
+        fragment.setArguments(args);
+        return fragment;
+    }
+
     @Nullable
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
@@ -47,7 +54,7 @@ public class ParentingRecordsFragment extends Fragment {
         NetworkTask networkTask = new NetworkTask(getContext(), 1);
         networkTask.execute();
 
-        //azure sql 테스트용
+        //azure sql 테스트용 플로팅버튼
         FloatingActionButton testButton = view.findViewById(R.id.testButton);
         testButton.setOnClickListener(new Button.OnClickListener() {
             @Override

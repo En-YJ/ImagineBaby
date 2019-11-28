@@ -1,6 +1,7 @@
 package com.example.imaginebaby;
 
 import android.graphics.Color;
+import android.location.Location;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.LayoutInflater;
@@ -38,6 +39,13 @@ import java.util.Locale;
 public class MealFragment extends Fragment implements OnChartValueSelectedListener {
 
     private View view;
+
+    public static MealFragment newInstance(){
+        MealFragment fragment = new MealFragment();
+        Bundle args = new Bundle();
+        fragment.setArguments(args);
+        return fragment;
+    }
 
     @Nullable
     @Override
@@ -154,8 +162,12 @@ public class MealFragment extends Fragment implements OnChartValueSelectedListen
 
         // have as many colors as stack-values per entry
         int[] colors = new int[3];
+        colors[0] = Color.parseColor("#a8d8ea");
+        colors[1] = Color.parseColor("#aa96da");
+        colors[2] = Color.parseColor("#fcbad3");
 
-        System.arraycopy(ColorTemplate.MATERIAL_COLORS, 0, colors, 0, 3);
+
+        //System.arraycopy(ColorTemplate.MATERIAL_COLORS, 0, colors, 0, 3);
 
         return colors;
     }

@@ -31,6 +31,13 @@ public class SleepFragment extends Fragment {
 
     private View view;
 
+    public static SleepFragment newInstance(){
+        SleepFragment fragment = new SleepFragment();
+        Bundle args = new Bundle();
+        fragment.setArguments(args);
+        return fragment;
+    }
+
     @Nullable
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {

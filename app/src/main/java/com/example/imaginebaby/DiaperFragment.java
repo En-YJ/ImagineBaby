@@ -1,6 +1,7 @@
 package com.example.imaginebaby;
 
 import android.graphics.Color;
+import android.location.Location;
 import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -37,6 +38,14 @@ public class DiaperFragment extends Fragment {
 
     private View view;
     private BarChart barChart;
+
+    public static DiaperFragment newInstance(){
+        DiaperFragment fragment = new DiaperFragment();
+        Bundle args = new Bundle();
+        fragment.setArguments(args);
+        return fragment;
+    }
+
 
     @Nullable
     @Override
