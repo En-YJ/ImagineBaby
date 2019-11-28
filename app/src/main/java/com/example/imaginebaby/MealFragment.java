@@ -6,6 +6,8 @@ import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.TextView;
+import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
@@ -25,8 +27,12 @@ import com.github.mikephil.charting.interfaces.datasets.IBarDataSet;
 import com.github.mikephil.charting.listener.OnChartValueSelectedListener;
 import com.github.mikephil.charting.utils.ColorTemplate;
 
+import java.text.DateFormat;
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
+import java.util.Calendar;
 import java.util.List;
+import java.util.Locale;
 
 // 아기 식사 통계
 public class MealFragment extends Fragment implements OnChartValueSelectedListener {
@@ -37,6 +43,26 @@ public class MealFragment extends Fragment implements OnChartValueSelectedListen
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
         view = inflater.inflate(R.layout.meal_fragment, container, false);
+
+        TextView week = view.findViewById(R.id.chart_tv_weekdate);
+
+        Calendar calendar = Calendar.getInstance();
+
+        // get the starting and ending date
+        // Set the calendar to sunday of the current week
+        calendar.set(Calendar.DAY_OF_WEEK, Calendar.SUNDAY);
+
+        // Print dates of the current week starting on Sunday
+        DateFormat df = new SimpleDateFormat("yyyy-MM-dd", Locale.getDefault());
+        String startDate = "", endDate = "";
+
+        startDate = df.format(calendar.getTime());
+        calendar.add(Calendar.DATE, 6);
+        endDate = df.format(calendar.getTime());
+
+        week.setText(startDate+ " ~ " +endDate); // 일주일치 가져오기
+
+
 
         BarChart chart = view.findViewById(R.id.mealBarChart);
         chart.getDescription().setEnabled(false); //디스크립션 삭제
@@ -86,7 +112,7 @@ public class MealFragment extends Fragment implements OnChartValueSelectedListen
 
 
         BarDataSet set1;
-        set1 = new BarDataSet(entries, "횟수 통계");
+        set1 = new BarDataSet(entries, "");
         set1.setDrawIcons(false);
         set1.setColors(getColors());
         set1.setStackLabels(new String[]{"모유", "분유", "이유식"});
@@ -95,7 +121,7 @@ public class MealFragment extends Fragment implements OnChartValueSelectedListen
         dataSets.add(set1);
 
         BarData data = new BarData(dataSets);
-        data.setValueFormatter(new StackedValueFormatter(false, "", 1));
+        data.setValueFormatter(new StackedValueFormatter(true, "", 0));
         data.setValueTextColor(Color.WHITE);
 
         chart.setData(data);

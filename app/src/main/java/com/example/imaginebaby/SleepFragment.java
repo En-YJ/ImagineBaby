@@ -4,6 +4,7 @@ import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.TextView;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
@@ -18,8 +19,12 @@ import com.github.mikephil.charting.data.BarEntry;
 import com.github.mikephil.charting.utils.ColorTemplate;
 import com.github.mikephil.charting.interfaces.datasets.IBarDataSet;
 
+import java.text.DateFormat;
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
+import java.util.Calendar;
 import java.util.List;
+import java.util.Locale;
 
 // 아기 수면 통계
 public class SleepFragment extends Fragment {
@@ -30,6 +35,25 @@ public class SleepFragment extends Fragment {
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
         view = inflater.inflate(R.layout.sleep_fragment, container, false);
+
+        TextView week = view.findViewById(R.id.chart_tv_weekdate);
+
+        Calendar calendar = Calendar.getInstance();
+
+        // get the starting and ending date
+        // Set the calendar to sunday of the current week
+        calendar.set(Calendar.DAY_OF_WEEK, Calendar.SUNDAY);
+
+        // Print dates of the current week starting on Sunday
+        DateFormat df = new SimpleDateFormat("yyyy-MM-dd", Locale.getDefault());
+        String startDate = "", endDate = "";
+
+        startDate = df.format(calendar.getTime());
+        calendar.add(Calendar.DATE, 6);
+        endDate = df.format(calendar.getTime());
+
+        week.setText(startDate+ " ~ " +endDate); // 일주일 설정
+
 
         BarChart chart = view.findViewById(R.id.barChart);
 

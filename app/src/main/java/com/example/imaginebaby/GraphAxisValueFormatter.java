@@ -14,13 +14,13 @@ public class GraphAxisValueFormatter extends ValueFormatter{
     // 생성자 초기화
     GraphAxisValueFormatter(){
         String[] labels = new String[7];
-        labels[0] = "일";
-        labels[1] = "월";
-        labels[2] = "화";
-        labels[3] = "수";
-        labels[4] = "목";
-        labels[5] = "금";
-        labels[6] = "토";
+        labels[0] = "Sun";
+        labels[1] = "Mon";
+        labels[2] = "Tue";
+        labels[3] = "Wed";
+        labels[4] = "Thu";
+        labels[5] = "Fri";
+        labels[6] = "Sat";
 
         this.mValues = labels;
     }

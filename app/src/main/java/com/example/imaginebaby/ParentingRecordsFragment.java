@@ -4,12 +4,15 @@ import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Button;
 import android.widget.ListView;
 import android.widget.TextView;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
+
+import com.google.android.material.floatingactionbutton.FloatingActionButton;
 
 import java.util.ArrayList;
 import java.util.Calendar;
@@ -43,6 +46,20 @@ public class ParentingRecordsFragment extends Fragment {
         //서버 연결
         NetworkTask networkTask = new NetworkTask(getContext(), 1);
         networkTask.execute();
+
+        //azure sql 테스트용
+        FloatingActionButton testButton = view.findViewById(R.id.testButton);
+        testButton.setOnClickListener(new Button.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+
+                //서버 연결
+                NetworkTask networkTask = new NetworkTask(getContext(), 2);
+                networkTask.execute();
+
+                return;
+            }
+        });
 
         return view;
     }

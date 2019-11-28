@@ -1,8 +1,10 @@
 <?xml version="1.0" encoding="utf-8"?>
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
     android:id="@+id/layout_chart"
     android:layout_width="match_parent"
-    android:layout_height="match_parent">
+    android:layout_height="match_parent"
+    tools:context=".MainActivity">
 
     <!-- # Main Layout # -->
     <LinearLayout
@@ -17,7 +19,7 @@
             android:layout_weight="0.5">
 
             <ImageButton
-                android:id="@+id/chart_ibtn_back"
+                android:onClick="WeekBackClicked"
                 android:layout_width="50dp"
                 android:layout_height="50dp"
                 android:layout_centerVertical="true"
@@ -36,12 +38,13 @@
                 android:layout_centerHorizontal="true"
                 android:layout_centerVertical="true"
                 android:layout_gravity="center"
-                android:text="2019-11-21 ~ 2019-11-28"
+                android:text="2019 ~week~ 2019"
                 android:textAppearance="?android:attr/textAppearanceLarge"
                 android:textColor="@color/black"
                 android:textSize="20sp" />
 
             <ImageButton
+                android:onClick="WeekNextClicked"
                 android:id="@+id/chart_ibtn_next"
                 android:layout_width="50dp"
                 android:layout_height="50dp"

@@ -11,9 +11,11 @@ import android.content.DialogInterface;
 import android.database.Cursor;
 import android.os.Bundle;
 import android.os.StrictMode;
+import android.util.Log;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.Button;
+import android.widget.EditText;
 import android.widget.ListView;
 import android.widget.TextView;
 
@@ -51,19 +53,6 @@ public class MainActivity extends AppCompatActivity {
        recordsFragment = new ParentingRecordsFragment();
        statisticsFragment = new ParentingStatisticsFragment();
 
-       //azure sql 테스트용
-        FloatingActionButton testButton = findViewById(R.id.testButton);
-        testButton.setOnClickListener(new Button.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-
-                //서버 연결
-                NetworkTask networkTask = new NetworkTask(MainActivity.this, 2);
-                networkTask.execute();
-
-                return;
-            }
-        });
 
 
         setFragment(0); //홈화면으로 지정
@@ -108,17 +97,17 @@ public class MainActivity extends AppCompatActivity {
 
         // AlertDialog 빌더를 이용해 종료시 발생시킬 창을 띄운다
         AlertDialog.Builder alBuilder = new AlertDialog.Builder(this);
-        alBuilder.setMessage("Do you wanna quit-?");
+        alBuilder.setMessage("Do you want to exit?");
 
         // "예" 버튼을 누르면 실행되는 리스너
-        alBuilder.setPositiveButton("Yeah", new DialogInterface.OnClickListener() {
+        alBuilder.setPositiveButton("Exit", new DialogInterface.OnClickListener() {
             @Override
             public void onClick(DialogInterface dialog, int which) {
                 finish(); // 현재 액티비티를 종료한다. (MainActivity에서 작동하기 때문에 애플리케이션을 종료한다.)
             }
         });
         // "아니오" 버튼을 누르면 실행되는 리스너
-        alBuilder.setNegativeButton("Nah", new DialogInterface.OnClickListener() {
+        alBuilder.setNegativeButton("Cancle", new DialogInterface.OnClickListener() {
             @Override
             public void onClick(DialogInterface dialog, int which) {
                 return; // 아무런 작업도 하지 않고 돌아간다
@@ -131,6 +120,15 @@ public class MainActivity extends AppCompatActivity {
 
     }
 
+    public void WeekBackClicked(View view){
+        TextView textView = findViewById(R.id.chart_tv_weekdate);
 
+        return;
+    }
+
+    public void WeekNextClicked(View view){
+        Log.d("adsfa","fdsf");
+        return;
+    }
 
 }
