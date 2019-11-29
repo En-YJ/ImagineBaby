@@ -114,7 +114,7 @@ public class ListAdapter extends ArrayAdapter<RecordsListItem> {
             holder.frontView.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View view) {
-                    Toast.makeText(getContext(), "클릭..!", Toast.LENGTH_SHORT).show();
+                    //Toast.makeText(getContext(), "클릭..!", Toast.LENGTH_SHORT).show();
                 }
             });
         }

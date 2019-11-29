@@ -48,7 +48,7 @@
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:layout_weight="1.5">
+        android:layout_weight="1.7">
 
     </LinearLayout>
 
@@ -64,7 +64,7 @@
             android:layout_width="280dp"
             android:layout_height="50dp"
             android:background="@drawable/edit_text"
-            android:hint="아기 이름"
+            android:hint="TITLE"
             android:textSize="16sp"
             android:drawablePadding="10dp"
             android:padding="10dp"
@@ -76,7 +76,7 @@
             android:layout_width="280dp"
             android:layout_height="50dp"
             android:background="@drawable/edit_text"
-            android:hint="새로운 아기 이름"
+            android:hint="DESC"
             android:textSize="16sp"
             android:drawablePadding="10dp"
             android:padding="10dp"
@@ -88,7 +88,7 @@
             android:layout_width="280dp"
             android:layout_height="50dp"
             android:background="@drawable/edit_text"
-            android:hint="생년월일 (ex: 2000-08-21)"
+            android:hint="TIme (ex: 2019-08-21 2am)"
             android:textSize="16sp"
             android:drawablePadding="10dp"
             android:padding="10dp"
@@ -97,33 +97,7 @@
 
     </LinearLayout>
 
-    <LinearLayout
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:layout_weight="1.3"
-        android:gravity="center">
 
-        <ImageButton
-            android:id="@+id/btn_boy"
-            android:layout_width="90dp"
-            android:layout_height="90dp"
-            android:src="@drawable/ic_sleep_face"
-            android:background="@android:color/transparent"
-            android:layout_marginLeft="30dp"
-            android:scaleType="centerCrop"
-            android:layout_marginRight="20dp" />
-
-        <ImageButton
-            android:id="@+id/btn_girl"
-            android:layout_width="90dp"
-            android:layout_height="90dp"
-            android:src="@drawable/ic_sleep_face"
-            android:scaleType="centerCrop"
-            android:background="@android:color/transparent"
-            android:layout_marginLeft="20dp"
-            android:layout_marginRight="30dp"/>
-
-    </LinearLayout>
 
     <LinearLayout
         android:layout_width="match_parent"

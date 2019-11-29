@@ -97,8 +97,8 @@ public class DiaperFragment extends Fragment {
         barChart.setDescription(null); //디스크립션
 
 
-        BarDataSet set = new BarDataSet(entries, "일일 기저귀 교체 횟수");
-
+        BarDataSet set = new BarDataSet(entries, "Diaper");
+        set.setColors(Color.parseColor("#29a19c"));
         BarData data = new BarData(set);
         data.setValueFormatter(new StackedValueFormatter(true, "", 0));
         data.setBarWidth(0.9f); // set custom bar width

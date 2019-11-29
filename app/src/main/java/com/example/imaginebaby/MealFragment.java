@@ -123,7 +123,7 @@ public class MealFragment extends Fragment implements OnChartValueSelectedListen
         set1 = new BarDataSet(entries, "");
         set1.setDrawIcons(false);
         set1.setColors(getColors());
-        set1.setStackLabels(new String[]{"모유", "분유", "이유식"});
+        set1.setStackLabels(new String[]{"BreastMilk", "Milk", "Food"});
 
         ArrayList<IBarDataSet> dataSets = new ArrayList<>();
         dataSets.add(set1);

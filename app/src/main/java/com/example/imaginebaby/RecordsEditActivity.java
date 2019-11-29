@@ -17,7 +17,6 @@ public class RecordsEditActivity extends AppCompatActivity {
 
     private EditText edit_prev_name, edit_new_name, edit_birth;
     private Button btn_change;
-    private int gender = 2;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -38,7 +37,6 @@ public class RecordsEditActivity extends AppCompatActivity {
     }
 
     public void change_btn() {
-        Log.d("change_btn()", "호출");
 
         edit_new_name = (EditText) findViewById(R.id.edit_new_name);
         edit_prev_name = (EditText) findViewById(R.id.edit_prev_name);
@@ -48,10 +46,10 @@ public class RecordsEditActivity extends AppCompatActivity {
         String prev_baby_name = edit_prev_name.getText().toString();
         String birth = edit_birth.getText().toString();
 
-        if (new_baby_name.equals("") || prev_baby_name.equals("") || birth.equals("") || gender == 2) {
-            Toast.makeText(getApplicationContext(), "꼭 입력해 주세요.", Toast.LENGTH_LONG).show();
+        if (new_baby_name.equals("") || prev_baby_name.equals("") || birth.equals("") ) {
+            Toast.makeText(getApplicationContext(), "No whitespace.", Toast.LENGTH_LONG).show();
         } else if (new_baby_name.equals(" ") || prev_baby_name.equals(" ") || birth.equals(" ")) {
-            Toast.makeText(getApplicationContext(), "공백 금지", Toast.LENGTH_LONG).show();
+            Toast.makeText(getApplicationContext(), "No whitespace", Toast.LENGTH_LONG).show();
         }
 
     }

@@ -64,32 +64,23 @@ public class GrowthFragment extends Fragment {
         week.setText(startDate+ " ~ " +endDate); // 일주일 설정
 
 
-        // 표시할 데이터 추가
+        // 표시할 데이터 추가 키
         ArrayList<Entry> heights = new ArrayList<>();
-        heights.add(new Entry(0, 15));
-        heights.add(new Entry(1, 17));
-        heights.add(new Entry(2, 18));
-        heights.add(new Entry(3, 20));
-        heights.add(new Entry(4, 22));
-        heights.add(new Entry(5, 24));
-        heights.add(new Entry(6, 30));
+        for (int i = 0; i < 7; i++) {
+            heights.add(new Entry(i, 15));
+        }
 
-        //chart_weight
-        // 표시할 데이터 추가
+        // 표시할 데이터 추가 몸무게
         ArrayList<Entry> weights = new ArrayList<>();
-        weights.add(new Entry(0, 3));
-        weights.add(new Entry(1, 5));
-        weights.add(new Entry(2, 5));
-        weights.add(new Entry(3, 7));
-        weights.add(new Entry(4, 7));
-        weights.add(new Entry(5, 8));
-        weights.add(new Entry(6, 10));
+        for (int i = 0; i < 7; i++) {
+            weights.add(new Entry(i, 10));
+        }
 
         // Dataset 설정
         LineChart chart_height = (LineChart)view.findViewById(R.id.chart_mainchart);
 
-        LineDataSet lineDataSet_h = new LineDataSet(heights, "키");
-        LineDataSet lineDataSet_w = new LineDataSet(weights, "몸무게");
+        LineDataSet lineDataSet_h = new LineDataSet(heights, "height");
+        LineDataSet lineDataSet_w = new LineDataSet(weights, "weight");
 
         //lineDataSet_h.setColors(ColorTemplate.VORDIPLOM_COLORS);
         lineDataSet_h.setDrawCircles(true);

@@ -72,7 +72,7 @@
                     android:layout_height="25dp"
                     android:textSize="17dp"
                     android:textColor="#4C4C4C"
-                    android:text="유저이름"/>
+                    android:text="Title"/>
 
                 <!-- 기록 내용 -->
                 <TextView
@@ -84,7 +84,7 @@
                     android:maxLines="1"
                     android:ellipsize="end"
                     android:singleLine="true"
-                    android:text="기록 내용"/>
+                    android:text="desc"/>
             </LinearLayout>
 
             <!-- 기록 시간 -->

@@ -144,7 +144,7 @@
                         android:layout_height="wrap_content"
                         android:layout_below="@+id/chart_tv02"
                         android:layout_marginTop="10dp"
-                        android:text="1시간"
+                        android:text="3 times"
                         android:textAppearance="@style/TextAppearance.AppCompat.Large"
                         android:textSize="22dp" />
 
@@ -173,7 +173,7 @@
                         android:layout_height="wrap_content"
                         android:layout_below="@+id/chart_tv03"
                         android:layout_marginTop="10dp"
-                        android:text="13시간"
+                        android:text="13 hour"
                         android:textAppearance="@style/TextAppearance.AppCompat.Large"
                         android:textSize="22dp" />
 

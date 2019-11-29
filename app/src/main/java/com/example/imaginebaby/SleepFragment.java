@@ -90,7 +90,7 @@ public class SleepFragment extends Fragment {
 
         chart.setDescription(null); //디스크립션
 
-        BarDataSet set = new BarDataSet(entries, "일일 수면 횟수");
+        BarDataSet set = new BarDataSet(entries, "Sleep");
         BarData data = new BarData(set);
         data.setBarWidth(0.9f); // set custom bar width
         chart.setData(data);
