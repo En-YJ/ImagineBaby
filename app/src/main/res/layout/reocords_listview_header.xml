@@ -3,11 +3,40 @@
     android:orientation="vertical" android:layout_width="match_parent"
     android:layout_height="match_parent">
 
-    <TextView
-        android:id="@+id/records_list_header"
-        android:layout_margin="5dp"
+    <LinearLayout
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:text="2019년 지금이 아니면 또 돌아올 것 같아"/>
+        android:layout_height="25dp"
+        android:orientation="horizontal"
+        android:weightSum="10">
+
+        <TextView
+            android:id="@+id/records_list_header_text"
+            android:layout_marginTop="5dp"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:text="2019년 지금이 아니면 또 돌아올 것 같아"
+            android:layout_weight="8"
+            android:background="@color/white"
+            android:gravity="center"/>
+
+        <ImageButton
+            android:id="@+id/records_list_header_calendar"
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent"
+            android:layout_marginRight="5dp"
+            android:layout_marginTop="5dp"
+            android:background="@color/white"
+            android:src="@drawable/calendar"
+            android:layout_weight="2"/>
+
+    </LinearLayout>
+
+
+    <View
+        android:layout_marginTop="5dp"
+        android:layout_width="match_parent"
+        android:layout_height="0.5dp"
+        android:layout_centerInParent="true"
+        android:background="@android:color/holo_blue_light"/>
 
 </LinearLayout>

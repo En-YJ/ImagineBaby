@@ -60,6 +60,7 @@
         android:layout_margin="0dp"
         android:adjustViewBounds="true"
         android:divider="@null"
+        android:background="@android:color/white"
         />
 
     <com.google.android.material.floatingactionbutton.FloatingActionButton
