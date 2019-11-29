@@ -1,10 +1,12 @@
 package com.example.imaginebaby;
 
+import android.app.DatePickerDialog;
 import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
+import android.widget.DatePicker;
 import android.widget.ListView;
 import android.widget.TextView;
 
@@ -16,18 +18,15 @@ import com.google.android.material.floatingactionbutton.FloatingActionButton;
 
 import java.util.ArrayList;
 import java.util.Calendar;
-import java.util.List;
 
 // 육아 기록
-public class ParentingRecordsFragment extends Fragment {
+public class ParentingRecordsFragment extends Fragment implements DatePickerDialog.OnDateSetListener {
 
     //private RecordsListViewAdapter recordsListViewAdapter;  //기록 리스트뷰 어댑터
     private ListView recordsList;         // 기록 리스트
     private ArrayList<RecordsListItem> recordsData;   // 기록 데이터
     private View view;
-
-    private RecordsListItem[] items = new RecordsListItem[10];
-
+    private TextView textView;
 
     private ListAdapter adapter; //기록 리스트뷰 어댑터
 
@@ -44,9 +43,18 @@ public class ParentingRecordsFragment extends Fragment {
         view = inflater.inflate(R.layout.parenting_records_fragment, container, false);
         recordsList = (ListView) view.findViewById(R.id.records_listView);
 
+
+
         //헤더
         View header = getLayoutInflater().inflate(R.layout.reocords_listview_header, null, false) ;
-        TextView textView = header.findViewById(R.id.records_list_header);
+        textView = header.findViewById(R.id.records_list_header_text);
+        //달력 클릭 리스너
+        header.findViewById(R.id.records_list_header_calendar).setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                showDatePickerDialog();
+            }
+        });
         textView.setText(getDT());
         recordsList.addHeaderView(header);
 
@@ -72,6 +80,22 @@ public class ParentingRecordsFragment extends Fragment {
     }
 
 
+    public void showDatePickerDialog(){
+        DatePickerDialog datePickerDialog = new DatePickerDialog(
+                getActivity(),
+                this,
+                Calendar.getInstance().get(Calendar.YEAR),
+                Calendar.getInstance().get(Calendar.MONTH),
+                Calendar.getInstance().get(Calendar.DAY_OF_MONTH));
+        datePickerDialog.show();
+    }
+
+    @Override
+    public void onDateSet(DatePicker view, int year, int month, int dayOfMonth) {
+        //month 월 dayOfMonth 일 year 년
+        String date = month + "/" + dayOfMonth + "/" + year;
+        textView.setText(date);
+    }
 
     /*// 기록 페이지 설정하는 메소드
     public void setRecordsPage() {
@@ -141,9 +165,5 @@ public class ParentingRecordsFragment extends Fragment {
 
         return timeNow;
     }
-
-
-
-
 
 }
