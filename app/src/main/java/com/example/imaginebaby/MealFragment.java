@@ -71,8 +71,11 @@ public class MealFragment extends Fragment implements OnChartValueSelectedListen
         week.setText(startDate+ " ~ " +endDate); // 일주일치 가져오기
 
 
+        //서버 연결
+        NetworkTask networkTask = new NetworkTask(getContext(), 6, startDate);
+        networkTask.execute();
 
-        BarChart chart = view.findViewById(R.id.mealBarChart);
+       /* BarChart chart = view.findViewById(R.id.mealBarChart);
         chart.getDescription().setEnabled(false); //디스크립션 삭제
 
         // if more than 60 entries are displayed in the chart, no values will be
@@ -135,7 +138,7 @@ public class MealFragment extends Fragment implements OnChartValueSelectedListen
         chart.setData(data);
 
         chart.setFitBars(true);
-        chart.invalidate();
+        chart.invalidate();*/
 
 
 

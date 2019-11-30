@@ -27,8 +27,8 @@ public class ParentingRecordsFragment extends Fragment implements DatePickerDial
     private ArrayList<RecordsListItem> recordsData;   // 기록 데이터
     private View view;
     private TextView textView;
-
     private ListAdapter adapter; //기록 리스트뷰 어댑터
+    public static String RecordDate = null;
 
     public static ParentingRecordsFragment newInstance(){
         ParentingRecordsFragment fragment = new ParentingRecordsFragment();
@@ -59,7 +59,7 @@ public class ParentingRecordsFragment extends Fragment implements DatePickerDial
         recordsList.addHeaderView(header);
 
         //서버 연결
-        NetworkTask networkTask = new NetworkTask(getContext(), 1);
+        NetworkTask networkTask = new NetworkTask(getContext(), 1, textView.getText().toString());
         networkTask.execute();
 
         //azure sql 테스트용 플로팅버튼
@@ -93,8 +93,11 @@ public class ParentingRecordsFragment extends Fragment implements DatePickerDial
     @Override
     public void onDateSet(DatePicker view, int year, int month, int dayOfMonth) {
         //month 월 dayOfMonth 일 year 년
-        String date = month + "/" + dayOfMonth + "/" + year;
+        String date = year + "-" + (month + 1) + "-" + dayOfMonth;
         textView.setText(date);
+        //서버 연결
+        NetworkTask networkTask = new NetworkTask(getContext(), 1, textView.getText().toString());
+        networkTask.execute();
     }
 
     /*// 기록 페이지 설정하는 메소드
@@ -161,7 +164,7 @@ public class ParentingRecordsFragment extends Fragment implements DatePickerDial
         //h = cal.get(Calendar.HOUR);
         //mi = cal.get(Calendar.MINUTE);
 
-        timeNow = y+"/"+m+"/"+d ;
+        timeNow = y+"-"+m+"-"+d ;
 
         return timeNow;
     }

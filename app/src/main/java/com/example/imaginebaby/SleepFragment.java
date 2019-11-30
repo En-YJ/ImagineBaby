@@ -1,6 +1,7 @@
 package com.example.imaginebaby;
 
 import android.os.Bundle;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -46,32 +47,33 @@ public class SleepFragment extends Fragment {
         TextView week = view.findViewById(R.id.chart_tv_weekdate);
 
         Calendar calendar = Calendar.getInstance();
-
         // get the starting and ending date
         // Set the calendar to sunday of the current week
         calendar.set(Calendar.DAY_OF_WEEK, Calendar.SUNDAY);
-
         // Print dates of the current week starting on Sunday
         DateFormat df = new SimpleDateFormat("yyyy-MM-dd", Locale.getDefault());
         String startDate = "", endDate = "";
-
         startDate = df.format(calendar.getTime());
         calendar.add(Calendar.DATE, 6);
         endDate = df.format(calendar.getTime());
-
         week.setText(startDate+ " ~ " +endDate); // 일주일 설정
 
 
-        BarChart chart = view.findViewById(R.id.barChart);
+        //서버 연결
+        NetworkTask networkTask = new NetworkTask(getContext(), 4, startDate);
+        networkTask.execute();
+
+        /*BarChart chart = view.findViewById(R.id.barChart);
+
 
         List<BarEntry> entries = new ArrayList<>();
-        entries.add(new BarEntry(0, 3));
-        entries.add(new BarEntry(1, 3));
-        entries.add(new BarEntry(2, 5));
-        entries.add(new BarEntry(3, 6));
-        entries.add(new BarEntry(4, 5));
-        entries.add(new BarEntry(5, 7));
-        entries.add(new BarEntry(6, 5));
+        entries.add(new BarEntry(0, networkTask.sun));
+        entries.add(new BarEntry(1, NetworkTask.mon));
+        entries.add(new BarEntry(2, NetworkTask.tue));
+        entries.add(new BarEntry(3, NetworkTask.wed));
+        entries.add(new BarEntry(4, NetworkTask.thu));
+        entries.add(new BarEntry(5, NetworkTask.fri));
+        entries.add(new BarEntry(6, NetworkTask.sat));
 
         XAxis xAxis = chart.getXAxis();
 
@@ -95,7 +97,7 @@ public class SleepFragment extends Fragment {
         data.setBarWidth(0.9f); // set custom bar width
         chart.setData(data);
         chart.setFitBars(true); // make the x-axis fit exactly all bars
-        chart.invalidate(); // refresh
+        chart.invalidate(); // refresh*/
 
         return view;
     }

@@ -87,6 +87,12 @@ public class MainActivity extends AppCompatActivity {
 
         }
 
+
+    }
+
+    @Override
+    protected void onPostResume() {
+        super.onPostResume();
     }
 
     // 뒤로가기 버튼을 눌렀을 때의 오버라이드 메소드
@@ -118,16 +124,6 @@ public class MainActivity extends AppCompatActivity {
 
     }
 
-    public void WeekBackClicked(View view){
-        TextView textView = findViewById(R.id.chart_tv_weekdate);
-
-        return;
-    }
-
-    public void WeekNextClicked(View view){
-        Log.d("adsfa","fdsf");
-        return;
-    }
 
 }
 
