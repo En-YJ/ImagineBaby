@@ -8,6 +8,7 @@ import android.graphics.Color;
 import android.os.AsyncTask;
 import android.util.Log;
 import android.widget.ListView;
+import android.widget.TextView;
 
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
@@ -127,6 +128,14 @@ public class NetworkTask extends AsyncTask<Void, Void, String> {
         return rs;
     }
 
+    public String SplitDate(String date){
+
+        String splitDate = "";
+        splitDate = date.split(" ")[1].split(":")[0] + ":" + date.split(" ")[1].split(":")[1];
+
+        return splitDate;
+    }
+
     @Override
     protected void onPostExecute(String result) {
 
@@ -151,7 +160,7 @@ public class NetworkTask extends AsyncTask<Void, Void, String> {
                             //rs.get원하는형식("데이터이름")
                             //rs.getString("baby_time").split(" ")[0] ;
                             if( (rs.getString("record_time").contains(data) )) {
-                                RecordsListItem item = new RecordsListItem(1, "EAT", rs.getString("baby_special"), rs.getString("record_time").split(" ")[1].split(":")[0] + "h");
+                                RecordsListItem item = new RecordsListItem(1, "EAT", rs.getString("baby_special"), SplitDate(rs.getString("record_time")));
                                 items.add(item);
                             }
                         }
@@ -162,7 +171,7 @@ public class NetworkTask extends AsyncTask<Void, Void, String> {
                             //rs.get원하는형식("데이터이름")
                             //rs.getString("baby_time").split(" ")[0] ;
                             if( (rs.getString("baby_time").contains(data) )) {
-                                RecordsListItem item = new RecordsListItem(1, "EAT", rs.getString("baby_special"), rs.getString("baby_time").split(" ")[1].split(":")[0] + "h");
+                                RecordsListItem item = new RecordsListItem(1, "EAT", rs.getString("baby_special"), SplitDate(rs.getString("baby_time")));
                                 items.add(item);
                             }
                         }
@@ -173,7 +182,7 @@ public class NetworkTask extends AsyncTask<Void, Void, String> {
                             //rs.get원하는형식("데이터이름")
                             //rs.getString("baby_time").split(" ")[0] ;
                             if( (rs.getString("baby_time").contains(data) )) {
-                                RecordsListItem item = new RecordsListItem(3, "DIAPER", rs.getString("baby_special"), rs.getString("baby_time").split(" ")[1].split(":")[0] + "h");
+                                RecordsListItem item = new RecordsListItem(3, "DIAPER", rs.getString("baby_special"), SplitDate(rs.getString("baby_time")));
                                 items.add(item);
                             }
                         }
@@ -184,8 +193,22 @@ public class NetworkTask extends AsyncTask<Void, Void, String> {
                             //rs.get원하는형식("데이터이름")
                             //rs.getString("baby_time").split(" ")[0] ;
                             if( (rs.getString("baby_record_time").contains(data) )) {
-                                RecordsListItem item = new RecordsListItem(rs.getInt("baby_id"),2, "SLEEP", rs.getString("baby_special"), rs.getString("baby_record_time").split(" ")[1].split(":")[0] + "h");
-                                items.add(item);
+                                if(rs.getString("baby_start_time") == null)
+                                {
+                                    RecordsListItem item = new RecordsListItem(rs.getInt("baby_id"),2, "SLEEP "+rs.getString("baby_sleep_time")+"min", rs.getString("baby_special"), SplitDate(rs.getString("baby_end_time")));
+                                    items.add(item);
+                                }
+                                else if(rs.getString("baby_end_time") == null)
+                                {
+                                    RecordsListItem item = new RecordsListItem(rs.getInt("baby_id"),2, "SLEEP "+rs.getString("baby_sleep_time")+"min", rs.getString("baby_special"), SplitDate(rs.getString("baby_start_time")));
+                                    items.add(item);
+                                }
+                                else
+                                {
+                                    RecordsListItem item = new RecordsListItem(rs.getInt("baby_id"),2, "SLEEP "+rs.getString("baby_sleep_time")+"min", rs.getString("baby_special"), SplitDate(rs.getString("baby_record_time")));
+                                    items.add(item);
+                                }
+
                             }
                         }
                         rs = resultSet("SELECT * FROM HeadSize");
@@ -195,7 +218,7 @@ public class NetworkTask extends AsyncTask<Void, Void, String> {
                             //rs.get원하는형식("데이터이름")
                             //rs.getString("baby_time").split(" ")[0] ;
                             if( (rs.getString("baby_reference_date").contains(data) )) {
-                                RecordsListItem item = new RecordsListItem(4, "GROWTH", "Head Size : "+rs.getString("baby_head_size")+" inch ", rs.getString("baby_reference_date").split(" ")[1].split(":")[0] + "h");
+                                RecordsListItem item = new RecordsListItem(4, "GROWTH", "Head Size : "+rs.getString("baby_head_size")+" inch ", SplitDate(rs.getString("baby_reference_date")));
                                 items.add(item);
                             }
                         }
@@ -249,6 +272,8 @@ public class NetworkTask extends AsyncTask<Void, Void, String> {
 
                     try {
                         ResultSet rs = resultSet("SELECT * FROM Sleep");
+                        int sleepTime = 0;
+                        int count = 0;
                         while(rs.next()) //없을때까지 도는거지
                         {
                             if ( isCancelled() ) break;
@@ -273,7 +298,22 @@ public class NetworkTask extends AsyncTask<Void, Void, String> {
                             if( (rs.getString("baby_record_time").contains(endDate) )) {
                                 sat++;
                             }
+
+                            if( rs.getString("baby_record_time").contains(startDate) || rs.getString("baby_record_time").contains(monDate) || rs.getString("baby_record_time").contains(tueDate) || rs.getString("baby_record_time").contains(wedDate) ||
+                                    rs.getString("baby_record_time").contains(thuDate) || rs.getString("baby_record_time").contains(friDate) || rs.getString("baby_record_time").contains(endDate) ){
+                                sleepTime += rs.getInt("baby_sleep_time");
+                                count++;
+                            }
+
                         }
+
+                        if(count == 0)
+                            count++;
+
+                        TextView averageSleepCount = ((Activity) context).findViewById(R.id.average_sleep_count);
+                        TextView averageSleepTime = ((Activity) context).findViewById(R.id.average_sleep_time);
+                        averageSleepCount.setText(String.valueOf(sun+mon+tue+wed+thu+fri+sat));
+                        averageSleepTime.setText(String.valueOf(sleepTime/count));
 
                         BarChart chart = ((Activity) context).findViewById(R.id.barChart);
                         List<BarEntry> entries = new ArrayList<>();
@@ -324,6 +364,9 @@ public class NetworkTask extends AsyncTask<Void, Void, String> {
                     sat = 0;
                     sun = 0;
 
+                    int pee=0;
+                    int poo=0;
+
 
                     try {
                         ResultSet rs = resultSet("SELECT * FROM Diaper");
@@ -351,7 +394,30 @@ public class NetworkTask extends AsyncTask<Void, Void, String> {
                             if( (rs.getString("baby_time").contains(endDate) )) {
                                 sat++;
                             }
+
+                            if( rs.getString("baby_time").contains(startDate) || rs.getString("baby_time").contains(monDate) || rs.getString("baby_time").contains(tueDate) || rs.getString("baby_time").contains(wedDate) ||
+                                    rs.getString("baby_time").contains(thuDate) || rs.getString("baby_time").contains(friDate) || rs.getString("baby_time").contains(endDate) )
+                            {
+                                if(rs.getInt("baby_state") == 1){
+                                    pee++;
+                                }
+                                if(rs.getInt("baby_state") == 2){
+                                    poo++;
+                                }
+                                if(rs.getInt("baby_state") == 3){
+                                    pee++;
+                                    poo++;
+                                }
+                            }
+
+
                         }
+
+                        TextView averagePee = ((Activity) context).findViewById(R.id.average_pee);
+                        TextView averagePoo = ((Activity) context).findViewById(R.id.average_poo);
+
+                        averagePee.setText(String.valueOf(pee));
+                        averagePoo.setText(String.valueOf(poo));
 
                         BarChart barChart = (BarChart) ((Activity) context).findViewById(R.id.diaperBarChart);
                         List<BarEntry> entries = new ArrayList<>();
@@ -468,6 +534,10 @@ public class NetworkTask extends AsyncTask<Void, Void, String> {
                             }
                         }
 
+                        TextView averageBreast = ((Activity) context).findViewById(R.id.average_breast);
+                        TextView averageMilkFood = ((Activity) context).findViewById(R.id.average_milk_food);
+                        averageBreast.setText(String.valueOf(sun+mon+tue+wed+thu+fri+sat));
+                        averageMilkFood.setText(String.valueOf(sun2+mon2+tue2+wed2+thu2+fri2+sat2));
 
                         BarChart chart = (BarChart) ((Activity) context).findViewById(R.id.mealBarChart);
                         chart.getDescription().setEnabled(false); //디스크립션 삭제
@@ -541,6 +611,7 @@ public class NetworkTask extends AsyncTask<Void, Void, String> {
                         ResultSet rs = resultSet("SELECT * FROM Height");
                         // 표시할 데이터 추가 키
                         ArrayList<Entry> heights = new ArrayList<>();
+                        String height = "";
                         while(rs.next()) //없을때까지 도는거지
                         {
                             if ( isCancelled() ) break;
@@ -565,10 +636,12 @@ public class NetworkTask extends AsyncTask<Void, Void, String> {
                             if( (rs.getString("baby_reference_date").contains(endDate) )) {
                                 heights.add(new Entry(6, rs.getInt("baby_height")));
                             }
+                            height = rs.getString("baby_height");
                         }
                         ResultSet rs2 = resultSet("SELECT * FROM Weight");
                         // 표시할 데이터 추가 키
                         ArrayList<Entry> weights = new ArrayList<>();
+                        String weight = "";
                         while(rs2.next()) //없을때까지 도는거지
                         {
                             if ( isCancelled() ) break;
@@ -593,9 +666,23 @@ public class NetworkTask extends AsyncTask<Void, Void, String> {
                             if( (rs2.getString("baby_reference_date").contains(endDate) )) {
                                 weights.add(new Entry(6, rs2.getInt("baby_weight")));
                             }
+                            weight = rs2.getString("baby_weight");
+                        }
+
+                        ResultSet rs3 = resultSet("SELECT * FROM HeadSize");
+                        String head= "";
+                        while(rs3.next()) //없을때까지 도는거지
+                        {
+                            head = rs3.getString("baby_head_size");
                         }
 
 
+                        TextView averageHeight = ((Activity) context).findViewById(R.id.average_height);
+                        TextView averageWeight = ((Activity) context).findViewById(R.id.average_weight);
+                        TextView averageHead = ((Activity) context).findViewById(R.id.average_head_size);
+                        averageHeight.setText(height+"cm");
+                        averageWeight.setText(weight+"kg");
+                        averageHead.setText(head+"inch");
 
                         // Dataset 설정
                         LineChart chart_height = ((Activity) context).findViewById(R.id.chart_mainchart);

@@ -139,7 +139,7 @@
                         android:textStyle="bold" />
 
                     <TextView
-                        android:id="@+id/chart_tv_averagedrink"
+                        android:id="@+id/average_sleep_count"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:layout_below="@+id/chart_tv02"
@@ -168,7 +168,7 @@
                         android:textStyle="bold" />
 
                     <TextView
-                        android:id="@+id/chart_tv_selectedday"
+                        android:id="@+id/average_sleep_time"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:layout_below="@+id/chart_tv03"

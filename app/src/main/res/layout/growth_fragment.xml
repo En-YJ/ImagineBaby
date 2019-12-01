@@ -136,7 +136,7 @@
                         android:textStyle="bold" />
 
                     <TextView
-                        android:id="@+id/chart_tv_totaldrink"
+                        android:id="@+id/average_height"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:layout_below="@+id/chart_tv01"
@@ -166,7 +166,7 @@
                         android:textStyle="bold" />
 
                     <TextView
-                        android:id="@+id/chart_tv_averagedrink"
+                        android:id="@+id/average_weight"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:layout_below="@+id/chart_tv02"
@@ -196,7 +196,7 @@
                         android:textStyle="bold" />
 
                     <TextView
-                        android:id="@+id/chart_tv_selectedday"
+                        android:id="@+id/average_head_size"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:layout_below="@+id/chart_tv03"

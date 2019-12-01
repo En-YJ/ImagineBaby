@@ -62,7 +62,7 @@ public class ParentingRecordsFragment extends Fragment implements DatePickerDial
         NetworkTask networkTask = new NetworkTask(getContext(), 1, textView.getText().toString());
         networkTask.execute();
 
-        //azure sql 테스트용 플로팅버튼
+       /* //azure sql 테스트용 플로팅버튼
         FloatingActionButton testButton = view.findViewById(R.id.testButton);
         testButton.setOnClickListener(new Button.OnClickListener() {
             @Override
@@ -74,7 +74,7 @@ public class ParentingRecordsFragment extends Fragment implements DatePickerDial
 
                 return;
             }
-        });
+        });*/
 
         return view;
     }
