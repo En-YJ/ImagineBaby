@@ -94,6 +94,10 @@ public class ParentingRecordsFragment extends Fragment implements DatePickerDial
     public void onDateSet(DatePicker view, int year, int month, int dayOfMonth) {
         //month 월 dayOfMonth 일 year 년
         String date = year + "-" + (month + 1) + "-" + dayOfMonth;
+
+        if(dayOfMonth/10 ==0)
+            date = year + "-" + (month + 1) + "-" + "0"+dayOfMonth;
+
         textView.setText(date);
         //서버 연결
         NetworkTask networkTask = new NetworkTask(getContext(), 1, textView.getText().toString());

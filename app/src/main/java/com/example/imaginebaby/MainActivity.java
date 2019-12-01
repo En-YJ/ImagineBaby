@@ -90,10 +90,6 @@ public class MainActivity extends AppCompatActivity {
 
     }
 
-    @Override
-    protected void onPostResume() {
-        super.onPostResume();
-    }
 
     // 뒤로가기 버튼을 눌렀을 때의 오버라이드 메소드
     @Override

@@ -192,7 +192,8 @@ public class NetworkTask extends AsyncTask<Void, Void, String> {
                             if ( isCancelled() ) break;
                             //rs.get원하는형식("데이터이름")
                             //rs.getString("baby_time").split(" ")[0] ;
-                            if( (rs.getString("baby_record_time").contains(data) )) {
+
+                            if( rs.getString("baby_end_time").contains(data) ) {
                                 if(rs.getString("baby_start_time") == null)
                                 {
                                     RecordsListItem item = new RecordsListItem(rs.getInt("baby_id"),2, "SLEEP "+rs.getString("baby_sleep_time")+"min", rs.getString("baby_special"), SplitDate(rs.getString("baby_end_time")));
@@ -203,9 +204,14 @@ public class NetworkTask extends AsyncTask<Void, Void, String> {
                                     RecordsListItem item = new RecordsListItem(rs.getInt("baby_id"),2, "SLEEP "+rs.getString("baby_sleep_time")+"min", rs.getString("baby_special"), SplitDate(rs.getString("baby_start_time")));
                                     items.add(item);
                                 }
-                                else
+                                else if(rs.getString("baby_end_time") == null && rs.getString("baby_start_time") == null)
                                 {
                                     RecordsListItem item = new RecordsListItem(rs.getInt("baby_id"),2, "SLEEP "+rs.getString("baby_sleep_time")+"min", rs.getString("baby_special"), SplitDate(rs.getString("baby_record_time")));
+                                    items.add(item);
+                                }
+                                else
+                                {
+                                    RecordsListItem item = new RecordsListItem(rs.getInt("baby_id"),2, "SLEEP "+rs.getString("baby_sleep_time")+"min", rs.getString("baby_special"), SplitDate(rs.getString("baby_end_time")));
                                     items.add(item);
                                 }
 
@@ -277,25 +283,25 @@ public class NetworkTask extends AsyncTask<Void, Void, String> {
                         while(rs.next()) //없을때까지 도는거지
                         {
                             if ( isCancelled() ) break;
-                            if( (rs.getString("baby_record_time").contains(startDate) )) {
+                            if( (rs.getString("baby_end_time").contains(startDate) )) {
                                 sun++;
                             }
-                            if( (rs.getString("baby_record_time").contains(monDate) )) {
+                            if( (rs.getString("baby_end_time").contains(monDate) )) {
                                 mon++;
                             }
-                            if( (rs.getString("baby_record_time").contains(tueDate) )) {
+                            if( (rs.getString("baby_end_time").contains(tueDate) )) {
                                 tue++;
                             }
-                            if( (rs.getString("baby_record_time").contains(wedDate) )) {
+                            if( (rs.getString("baby_end_time").contains(wedDate) )) {
                                 wed++;
                             }
-                            if( (rs.getString("baby_record_time").contains(thuDate) )) {
+                            if( (rs.getString("baby_end_time").contains(thuDate) )) {
                                 thu++;
                             }
-                            if( (rs.getString("baby_record_time").contains(friDate) )) {
+                            if( (rs.getString("baby_end_time").contains(friDate) )) {
                                 fri++;
                             }
-                            if( (rs.getString("baby_record_time").contains(endDate) )) {
+                            if( (rs.getString("baby_end_time").contains(endDate) )) {
                                 sat++;
                             }
 
