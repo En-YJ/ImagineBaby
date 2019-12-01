@@ -161,12 +161,16 @@ public class ParentingRecordsFragment extends Fragment implements DatePickerDial
         y = cal.get(Calendar.YEAR);
         m = cal.get(Calendar.MONTH) +1;
         d = cal.get(Calendar.DAY_OF_MONTH);
+
         //h = cal.get(Calendar.HOUR);
         //mi = cal.get(Calendar.MINUTE);
 
         timeNow = y+"-"+m+"-"+d ;
 
-        return timeNow;
+        if(d/10 ==0)
+            timeNow = y+"-"+m+"-"+"0"+d ;
+
+            return timeNow;
     }
 
 }
