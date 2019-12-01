@@ -93,7 +93,7 @@ public class ParentingRecordsFragment extends Fragment implements DatePickerDial
     @Override
     public void onDateSet(DatePicker view, int year, int month, int dayOfMonth) {
         //month 월 dayOfMonth 일 year 년
-        String date = month + "/" + dayOfMonth + "/" + year;
+        String date = month+1 + "/" + dayOfMonth + "/" + year;
         textView.setText(date);
     }
 
