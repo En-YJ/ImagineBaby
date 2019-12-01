@@ -63,8 +63,12 @@ public class GrowthFragment extends Fragment {
 
         week.setText(startDate+ " ~ " +endDate); // 일주일 설정
 
+        //서버 연결
+        NetworkTask networkTask = new NetworkTask(getContext(), 7, startDate);
+        networkTask.execute();
 
-        // 표시할 데이터 추가 키
+
+       /* // 표시할 데이터 추가 키
         ArrayList<Entry> heights = new ArrayList<>();
         for (int i = 0; i < 7; i++) {
             heights.add(new Entry(i, 15));
@@ -113,7 +117,7 @@ public class GrowthFragment extends Fragment {
 
         chart_height.setDescription(null); //디스크립션
         //chart_height.animateY(2000, Easing.EaseInCubic);
-        chart_height.invalidate();
+        chart_height.invalidate();*/
 
 
 

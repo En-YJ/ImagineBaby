@@ -70,13 +70,13 @@ public class ListAdapter extends ArrayAdapter<RecordsListItem> {
                     image = convertView.getResources().getDrawable(R.drawable.ic_bottle);
                     break;
                 case 2:
-                    image=convertView.getResources().getDrawable(R.drawable.ic_diaper);
+                    image=convertView.getResources().getDrawable(R.drawable.ic_sleep2);
                     break;
                 case 3:
-                    image=convertView.getResources().getDrawable(R.drawable.ic_growth);
+                    image=convertView.getResources().getDrawable(R.drawable.ic_diaper);
                     break;
                 case 4:
-                    image=convertView.getResources().getDrawable(R.drawable.ic_sleep2);
+                    image=convertView.getResources().getDrawable(R.drawable.ic_growth);
                     break;
             }
             
@@ -94,9 +94,8 @@ public class ListAdapter extends ArrayAdapter<RecordsListItem> {
                 public void onClick(View v) {
 
                     remove(item);
-
                     //서버 연결
-                    NetworkTask networkTask = new NetworkTask(getContext(), 3, item.getRecords_desc());
+                    NetworkTask networkTask = new NetworkTask(getContext(), 3, String.valueOf(item.getRecords_id()));
                     networkTask.execute();
                 }
             });

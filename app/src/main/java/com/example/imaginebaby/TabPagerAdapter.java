@@ -1,7 +1,9 @@
 package com.example.imaginebaby;
 
+import androidx.annotation.NonNull;
 import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentManager;
+import androidx.fragment.app.FragmentPagerAdapter;
 import androidx.fragment.app.FragmentStatePagerAdapter;
 
 public class TabPagerAdapter extends FragmentStatePagerAdapter {
@@ -25,7 +27,6 @@ public class TabPagerAdapter extends FragmentStatePagerAdapter {
         switch (position)
         {
             case 0:
-
                 return mealFragment;
             case 1:
 
@@ -39,6 +40,15 @@ public class TabPagerAdapter extends FragmentStatePagerAdapter {
 
                 default :
                     return null;
+        }
+    }
+
+    @Override
+    public int getItemPosition(@NonNull Object object) {
+        if (true) {
+            return POSITION_NONE;
+        } else {
+            return super.getItemPosition(object);
         }
     }
 

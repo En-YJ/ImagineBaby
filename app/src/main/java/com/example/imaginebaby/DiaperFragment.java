@@ -70,6 +70,11 @@ public class DiaperFragment extends Fragment {
 
         week.setText(startDate+ " ~ " +endDate); // 일주일 설정
 
+        //서버 연결
+        NetworkTask networkTask = new NetworkTask(getContext(), 5, startDate);
+        networkTask.execute();
+/*
+
         barChart = (BarChart) view.findViewById(R.id.diaperBarChart);
         List<BarEntry> entries = new ArrayList<>();
         entries.add(new BarEntry(0, 1f));
@@ -98,13 +103,14 @@ public class DiaperFragment extends Fragment {
 
 
         BarDataSet set = new BarDataSet(entries, "Diaper");
-        set.setColors(Color.parseColor("#29a19c"));
+        set.setColors(Color.parseColor("#fcf5b0"));
         BarData data = new BarData(set);
         data.setValueFormatter(new StackedValueFormatter(true, "", 0));
         data.setBarWidth(0.9f); // set custom bar width
         barChart.setData(data);
         barChart.setFitBars(true); // make the x-axis fit exactly all bars
         barChart.invalidate(); // refresh
+*/
 
 
         return view;
